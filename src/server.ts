@@ -1,19 +1,15 @@
-import Fastify from "fastify";
+// Language: typescript
+// Framework: express
 
-const server = Fastify({ logger: true });
+import express from "express";
 
-server.get("/healthcheck", async () => {
-    return { status: "ok" };
+const app = express();
+const port = 3000;
+
+app.get("/", (req, res) => {
+    res.send("Hello World!");
 });
 
-async function main() {
-    try {
-        await server.listen({ port: 3000 });
-        console.log(`Server listening on http://localhost:3000`);
-    } catch (error) {
-        console.error(error);
-        process.exit(1);
-    }
-}
-
-main();
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+});
